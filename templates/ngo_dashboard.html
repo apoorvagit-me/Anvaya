@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>NGO Dashboard</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f4f4f4;
+            margin:0;
+        }
+
+        header{
+            background:#1565C0;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        .container{
+            width:80%;
+            margin:auto;
+            margin-top:30px;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            margin-bottom:20px;
+            box-shadow:0 0 10px rgba(0,0,0,.15);
+        }
+
+        .claim-btn{
+            background:#2E8B57;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        .claim-btn:hover{
+            background:#1d6d45;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Welcome, {{ ngo }}</h1>
+
+</header>
+
+<div class="container">
+
+<h2>Available Food Donations</h2>
+
+{% if donations %}
+
+    {% for donation in donations %}
+
+    <div class="card">
+
+        <h3>{{ donation.food_name }}</h3>
+
+        <p><b>Restaurant:</b> {{ donation.restaurant }}</p>
+
+        <p><b>Quantity:</b> {{ donation.quantity }}</p>
+
+        <p><b>Pickup Address:</b> {{ donation.address }}</p>
+
+        <p><b>Ready Until:</b> {{ donation.ready_until }}</p>
+
+        <p><b>Phone:</b> {{ donation.phone }}</p>
+
+        <form action="/claim/{{ donation.id }}" method="POST">
+
+            <button class="claim-btn">
+                Claim Donation
+            </button>
+
+        </form>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+<h3>No food donations available.</h3>
+
+{% endif %}
+
+<br>
+
+<a href="/">🏠 Back to Home</a>
+
+</div>
+
+</body>
+
+</html>

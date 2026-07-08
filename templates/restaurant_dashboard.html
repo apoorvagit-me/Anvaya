@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Restaurant Dashboard</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f4f4f4;
+            margin:0;
+        }
+
+        header{
+            background:#2E8B57;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        .container{
+            width:80%;
+            margin:auto;
+            margin-top:30px;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            margin-bottom:20px;
+            box-shadow:0 0 10px rgba(0,0,0,.15);
+        }
+
+        .button{
+            display:inline-block;
+            background:#2E8B57;
+            color:white;
+            padding:12px 20px;
+            text-decoration:none;
+            border-radius:5px;
+            margin-top:15px;
+        }
+
+        .button:hover{
+            background:#1d6d45;
+        }
+
+        .status{
+            color:green;
+            font-weight:bold;
+        }
+
+        .claimed{
+            color:#0066cc;
+            font-weight:bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Welcome, {{ restaurant }}</h1>
+
+<br>
+
+<a
+href="/restaurant/logout"
+style="
+background:#d9534f;
+color:white;
+padding:10px 18px;
+text-decoration:none;
+border-radius:5px;
+font-weight:bold;
+">
+Logout
+</a>
+
+</header>
+
+<div class="container">
+
+<a href="/restaurant/add-donation" class="button">
+➕ Add New Donation
+</a>
+
+<h2>Your Donations</h2>
+
+{% if donations %}
+
+    {% for donation in donations %}
+
+    <div class="card">
+
+        <h3>{{ donation.food_name }}</h3>
+
+        <p><b>Quantity:</b> {{ donation.quantity }}</p>
+
+        <p><b>Pickup Address:</b> {{ donation.address }}</p>
+
+        <p><b>Ready Until:</b> {{ donation.ready_until }}</p>
+
+        <p><b>Phone:</b> {{ donation.phone }}</p>
+
+        <p>
+    <b>Status:</b>
+
+    {% if donation.status == "Available" %}
+
+        <span style="color:green;">
+            {{ donation.status }}
+        </span>
+
+    {% elif donation.status == "Claimed" %}
+
+        <span style="color:orange;">
+            {{ donation.status }}
+        </span>
+
+    {% else %}
+
+        <span style="color:blue;">
+            {{ donation.status }}
+        </span>
+
+    {% endif %}
+</p>
+        <p>
+    <b>Claimed By:</b>
+
+    {% if donation.claimed_by %}
+
+        <span class="claimed">
+            {{ donation.claimed_by }}
+        </span>
+
+        <br><br>
+
+        <span
+        style="
+        color:red;
+        font-weight:bold;
+        font-size:18px;
+        ">
+
+        🔔 Your donation has been claimed!
+
+        </span>
+
+    {% else %}
+
+        Not Claimed Yet
+
+    {% endif %}
+</p>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+<h3>No donations available.</h3>
+
+{% endif %}
+
+<br>
+
+<a href="/">🏠 Back to Home</a>
+
+</div>
+
+</body>
+
+</html>

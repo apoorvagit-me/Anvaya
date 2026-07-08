@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Anvaya | Connecting Food. Connecting Lives.</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- ================= HERO SECTION ================= -->
+
+<header class="hero">
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+    <span class="leaf">
+        <i class="fa-solid fa-leaf"></i>
+    </span>
+
+    Anvaya
+
+</div>
+
+        <ul class="nav-links">
+
+            <li><a href="#">Home</a></li>
+
+            <li><a href="#">About</a></li>
+
+            <li><a href="#">Volunteer</a></li>
+
+            <li><a href="#">Contact</a></li>
+
+        </ul>
+
+    </nav>
+
+    <div class="hero-container">
+
+        <div class="hero-left">
+
+            <span class="tagline">
+                🌱 Connecting Food. Connecting Lives.
+            </span>
+
+            <h1>
+    Connecting Food. <br>
+    Changing <span>Lives.</span>
+</h1>
+
+            <p>
+                Anvaya brings together restaurants, volunteers,
+NGOs, and communities to rescue surplus food
+and ensure every meal reaches someone in need.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#" class="btn-primary">
+                    Donate Food
+                </a>
+
+                <a href="#" class="btn-secondary">
+                    Become a Volunteer
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <img src="{{ url_for('static', filename='images/hero.png.png') }}" alt="Food Donation">
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ================= WHY ANVAYA ================= -->
+
+<section class="why-anvaya">
+
+    <div class="section-title">
+
+        <h2>Why Anvaya Matters</h2>
+
+        <p>
+            Every day, perfectly good food is wasted while millions of people
+            struggle with hunger. Anvaya connects food donors,
+            volunteers, and communities to make every meal count.
+        </p>
+
+    </div>
+
+    <div class="features">
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-utensils"></i>
+
+            <h3>Reduce Food Waste</h3>
+
+            <p>
+                Rescue surplus food from restaurants, hotels, and events
+                before it goes to waste.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-hand-holding-heart"></i>
+
+            <h3>Fight Hunger</h3>
+
+            <p>
+                Deliver fresh and nutritious meals to families and
+                individuals in need.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-earth-asia"></i>
+
+            <h3>Build Communities</h3>
+
+            <p>
+                Unite volunteers, NGOs, and businesses to create a
+                sustainable social impact.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= LIVE FOOD DONATIONS ================= -->
+
+<section class="donations">
+
+    <div class="section-title">
+
+        <h2>Live Food Donations</h2>
+
+        <p>
+            These are sample donations to demonstrate how Anvaya will display
+            available meals in real time. Once the backend is complete,
+            restaurants will be able to post donations that volunteers can
+            instantly claim.
+        </p>
+
+    </div>
+
+    <div class="donation-grid">
+
+        <!-- Card 1 -->
+
+        <div class="donation-card">
+
+            <div class="food-icon">
+                🍛
+            </div>
+
+            <h3>Veg Biryani Meals</h3>
+
+            <p class="restaurant">
+                Paradise Restaurant
+            </p>
+
+            <p>📍 Hyderabad</p>
+
+            <p>🍽 50 Meals Available</p>
+
+            <span class="status available">
+                Available Now
+            </span>
+
+            <button class="claim-btn">
+                Claim Donation
+            </button>
+
+        </div>
+
+        <!-- Card 2 -->
+
+        <div class="donation-card">
+
+            <div class="food-icon">
+                🍕
+
+            </div>
+
+            <h3>Pizza & Garlic Bread</h3>
+
+            <p class="restaurant">
+                Domino's
+            </p>
+
+            <p>📍 Bengaluru</p>
+
+            <p>🍽 20 Meals Available</p>
+
+            <span class="status urgent">
+                Pickup Within 30 Minutes
+            </span>
+
+            <button class="claim-btn">
+                Claim Donation
+            </button>
+
+        </div>
+
+        <!-- Card 3 -->
+
+        <div class="donation-card">
+
+            <div class="food-icon">
+                🥗
+            </div>
+
+            <h3>Mixed Veg Meals</h3>
+
+            <p class="restaurant">
+                ITC Hotels
+            </p>
+
+            <p>📍 Chennai</p>
+
+            <p>🍽 35 Meals Available</p>
+
+            <span class="status available">
+                Available Now
+            </span>
+
+            <button class="claim-btn">
+                Claim Donation
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PROJECTED FIRST-YEAR IMPACT ================= -->
+
+<section class="impact">
+
+    <div class="section-title">
+
+        <h2>Projected First-Year Impact</h2>
+
+        <p>
+            These milestones represent the positive change Anvaya aims to
+            achieve during its first year by connecting restaurants,
+            volunteers, NGOs, and local communities.
+        </p>
+
+    </div>
+
+    <div class="impact-grid">
+
+        <div class="impact-card">
+
+            <h3>10,000+</h3>
+
+            <p>Meals Rescued</p>
+
+        </div>
+
+        <div class="impact-card">
+
+            <h3>500+</h3>
+
+            <p>Volunteers Engaged</p>
+
+        </div>
+
+        <div class="impact-card">
+
+            <h3>250+</h3>
+
+            <p>Restaurant Partners</p>
+
+        </div>
+
+        <div class="impact-card">
+
+            <h3>25+</h3>
+
+            <p>Cities Reached</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

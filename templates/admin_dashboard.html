@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Admin Dashboard</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+    margin:40px;
+}
+
+.box{
+    width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#2E8B57;
+}
+
+.card{
+    background:#eaf7ee;
+    padding:20px;
+    margin:15px 0;
+    border-radius:8px;
+    font-size:20px;
+}
+
+a{
+    text-decoration:none;
+    color:white;
+    background:#2E8B57;
+    padding:10px 18px;
+    border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>Welcome Admin</h1>
+
+<div class="card">
+Restaurants Registered: {{ restaurant_count }}
+</div>
+
+<div class="card">
+NGOs Registered: {{ ngo_count }}
+</div>
+
+<div class="card">
+Total Donations: {{ donation_count }}
+</div>
+
+<br>
+
+<a href="/admin/restaurants">Restaurants</a>
+
+&nbsp;&nbsp;
+
+<a href="/admin/ngos">NGOs</a>
+
+&nbsp;&nbsp;
+
+<a href="/admin/donations">Donations</a>
+
+&nbsp;&nbsp;
+
+<a href="/admin/logout">Logout</a>
+
+</div>
+
+</body>
+
+</html>

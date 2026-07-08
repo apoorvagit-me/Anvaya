@@ -1,0 +1,658 @@
+/* ==========================================
+   SharePlate - Professional Landing Page
+   ========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8faf8;
+    color:#333;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+    min-height:100vh;
+
+    background:linear-gradient(135deg,#1E5631,#2E8B57);
+
+    color:white;
+
+    overflow:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+    width:90%;
+
+    margin:auto;
+
+    padding:28px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.logo{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+}
+
+.nav-links{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:40px;
+}
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:18px;
+
+    transition:.3s;
+}
+
+.nav-links a:hover{
+
+    color:#FFD54F;
+}
+
+/* ================= HERO LAYOUT ================= */
+
+.hero-container{
+
+    width:90%;
+
+    margin:auto;
+
+    min-height:85vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:70px;
+}
+
+/* ================= LEFT SIDE ================= */
+
+.hero-left{
+
+    flex:1;
+}
+
+.tagline{
+
+    display:inline-block;
+
+    background:rgba(255,255,255,.15);
+
+    padding:10px 20px;
+
+    border-radius:50px;
+
+    margin-bottom:25px;
+
+    font-size:15px;
+}
+
+.hero-left h1{
+
+    font-size:72px;
+
+    line-height:1.1;
+
+    margin-bottom:25px;
+
+    font-weight:800;
+}
+
+.hero-left h1 span{
+
+    color:#FFD54F;
+}
+
+.hero-left p{
+
+    font-size:22px;
+
+    line-height:1.8;
+
+    max-width:600px;
+
+    color:#f2f2f2;
+
+    margin-bottom:45px;
+}
+
+/* ================= BUTTONS ================= */
+
+.buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+.buttons a{
+
+    text-decoration:none;
+
+    padding:18px 36px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    display:inline-block;
+}
+
+.btn-primary{
+
+    background:white;
+
+    color:#2E8B57;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-6px);
+
+    background:#f2f2f2;
+}
+
+.btn-secondary{
+
+    border:2px solid white;
+
+    color:white;
+}
+
+.btn-secondary:hover{
+
+    background:white;
+
+    color:#2E8B57;
+
+    transform:translateY(-6px);
+}
+
+/* ================= RIGHT IMAGE ================= */
+
+.hero-right{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+}
+
+.hero-right img{
+
+    width:100%;
+
+    max-width:520px;
+
+    animation:float 5s ease-in-out infinite;
+
+    filter:drop-shadow(0 25px 40px rgba(0,0,0,.35));
+}
+
+/* ================= FLOAT ANIMATION ================= */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+/* ==========================================
+   WHY SHAREPLATE
+   ========================================== */
+
+.why-shareplate{
+
+    padding:100px 10%;
+
+    background:#f8fdf9;
+}
+
+.section-title{
+
+    text-align:center;
+
+    max-width:800px;
+
+    margin:auto;
+}
+
+.section-title h2{
+
+    font-size:44px;
+
+    color:#1E5631;
+
+    margin-bottom:20px;
+}
+
+.section-title p{
+
+    font-size:18px;
+
+    color:#666;
+
+    line-height:1.8;
+}
+
+.features{
+
+    margin-top:70px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:35px;
+}
+
+.feature-card{
+
+    background:white;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+}
+
+.feature-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.feature-card i{
+
+    font-size:55px;
+
+    color:#2E8B57;
+
+    margin-bottom:25px;
+}
+
+.feature-card h3{
+
+    color:#1E5631;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+}
+
+.feature-card p{
+
+    color:#666;
+
+    line-height:1.8;
+}
+
+/* ==========================================
+   OUR IMPACT
+   ========================================== */
+
+.impact{
+
+    padding:100px 10%;
+
+    background:white;
+}
+
+.impact-grid{
+
+    margin-top:60px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+}
+
+.impact-card{
+
+    background:#1E5631;
+
+    color:white;
+
+    text-align:center;
+
+    padding:45px 20px;
+
+    border-radius:18px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+
+    transition:.3s;
+}
+
+.impact-card:hover{
+
+    background:#2E8B57;
+
+    transform:translateY(-8px);
+}
+
+.impact-card h3{
+
+    font-size:42px;
+
+    color:#FFD54F;
+
+    margin-bottom:12px;
+}
+
+.impact-card p{
+
+    font-size:18px;
+
+    font-weight:500;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media(max-width:992px){
+
+    .hero-container{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        padding:50px 0;
+    }
+
+    .hero-left h1{
+
+        font-size:52px;
+    }
+
+    .hero-left p{
+
+        margin:auto auto 40px;
+    }
+
+    .buttons{
+
+        justify-content:center;
+    }
+
+    .hero-right{
+
+        margin-top:40px;
+    }
+
+    .hero-right img{
+
+        max-width:380px;
+    }
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:20px;
+    }
+
+    .nav-links{
+
+        gap:20px;
+    }
+
+    .features{
+
+        grid-template-columns:1fr;
+    }
+
+    .impact-grid{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .hero-left h1{
+
+        font-size:40px;
+    }
+
+    .hero-left p{
+
+        font-size:18px;
+    }
+
+    .buttons{
+
+        flex-direction:column;
+    }
+
+    .buttons a{
+
+        width:100%;
+    }
+
+    .logo{
+
+        font-size:28px;
+    }
+
+    .nav-links{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+    }
+
+    .impact-grid{
+
+        grid-template-columns:1fr;
+    }
+
+/* ==========================================
+   LIVE FOOD DONATIONS
+========================================== */
+
+.donations{
+
+    padding:100px 10%;
+
+    background:#FAFAF5;
+}
+
+.donation-grid{
+
+    margin-top:60px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:35px;
+}
+
+.donation-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    text-align:center;
+
+    border-top:6px solid #14532D;
+}
+
+.donation-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 25px 45px rgba(0,0,0,.15);
+}
+
+.food-icon{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+}
+
+.donation-card h3{
+
+    color:#14532D;
+
+    margin-bottom:15px;
+}
+
+.restaurant{
+
+    font-weight:600;
+
+    color:#444;
+
+    margin-bottom:15px;
+}
+
+.donation-card p{
+
+    margin:8px 0;
+
+    color:#666;
+}
+
+.status{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    margin-bottom:25px;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+.available{
+
+    background:#DFF6DD;
+
+    color:#1B5E20;
+}
+
+.urgent{
+
+    background:#FFE7CC;
+
+    color:#E65100;
+}
+
+.claim-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#14532D;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.claim-btn:hover{
+
+    background:#F4B400;
+
+    color:#222;
+}
+
+@media(max-width:992px){
+
+    .donation-grid{
+
+        grid-template-columns:1fr;
+    }
+
+}

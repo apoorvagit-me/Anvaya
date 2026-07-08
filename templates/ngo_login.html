@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>NGO Login</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f4f4f4;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .box{
+            width:400px;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 15px rgba(0,0,0,.2);
+        }
+
+        h2{
+            text-align:center;
+            color:#2E8B57;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#2E8B57;
+            color:white;
+            border:none;
+            cursor:pointer;
+            font-size:17px;
+        }
+
+        p{
+            text-align:center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>NGO Login</h2>
+
+<form method="POST">
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="password" name="password" placeholder="Password" required>
+
+<button type="submit">Login</button>
+
+</form>
+
+<br>
+
+<p>
+    Don't have an account?
+    <a href="/ngo/register">Register</a>
+</p>
+
+<p>
+    <a href="/">🏠 Back to Home</a>
+</p>
+
+</div>
+
+</body>
+</html>
