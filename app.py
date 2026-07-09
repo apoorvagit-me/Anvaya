@@ -424,15 +424,23 @@ def admin_logout():
 with app.app_context():
     print("===== STARTING DATABASE INITIALIZATION =====")
 
-    db.create_all()
-
     from sqlalchemy import inspect
 
-    inspector = inspect(db.engine)
-
     print("DATABASE URI =", app.config["SQLALCHEMY_DATABASE_URI"])
-    print("ENGINE =", db.engine.url)
-    print("TABLES FOUND:", inspector.get_table_names())
+
+    try:
+        db.drop_all()
+        print("DROP ALL SUCCESS")
+
+        db.create_all()
+        print("CREATE ALL SUCCESS")
+
+        inspector = inspect(db.engine)
+        print("TABLES FOUND:", inspector.get_table_names())
+
+    except Exception as e:
+        print("DATABASE ERROR:", repr(e))
+        raise
 
     admin = Admin.query.filter_by(username="admin").first()
 
