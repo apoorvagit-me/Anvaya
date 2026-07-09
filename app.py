@@ -1,9 +1,12 @@
+import resend
 import os
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
+
+resend.api_key = os.environ.get("RESEND_API_KEY")
 
 # ================= CONFIGURATION =================
 
@@ -458,24 +461,20 @@ with app.app_context():
 @app.route("/test-email")
 def test_email():
 
-    msg = Message(
-        subject="Anvaya Email Test",
-        recipients=["anvaya.platform@gmail.com"]
-    )
+    params = {
+        "from": "onboarding@resend.dev",
+        "to": ["YOUR_PERSONAL_EMAIL@gmail.com"],  # Replace with your email
+        "subject": "Anvaya Test Email",
+        "html": """
+        <h2>Hello!</h2>
+        <p>Your Resend integration is working successfully.</p>
+        <p><b>Welcome to Anvaya 🚀</b></p>
+        """
+    }
 
-    msg.body = """
-Hello!
+    resend.Emails.send(params)
 
-This is a test email from your Anvaya platform.
-
-If you received this, Gmail integration is working successfully.
-
-- Anvaya
-"""
-
-    mail.send(msg)
-
-    return "Test email sent successfully!"
+    return "Email sent successfully!"
 
 
 if __name__ == "__main__":
