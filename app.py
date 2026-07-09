@@ -22,6 +22,12 @@ db = SQLAlchemy(app)
 
 # ================= MAIL CONFIGURATION =================
 
+print("MAIL_SERVER =", app.config["MAIL_SERVER"])
+print("MAIL_PORT =", app.config["MAIL_PORT"])
+print("MAIL_USE_TLS =", app.config["MAIL_USE_TLS"])
+print("MAIL_USERNAME =", app.config["MAIL_USERNAME"])
+print("MAIL_DEFAULT_SENDER =", app.config["MAIL_DEFAULT_SENDER"])
+
 app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
 app.config["MAIL_PORT"] = int(os.environ.get("MAIL_PORT", 587))
 app.config["MAIL_USE_TLS"] = os.environ.get("MAIL_USE_TLS", "True") == "True"
