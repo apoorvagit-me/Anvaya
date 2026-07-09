@@ -462,8 +462,8 @@ with app.app_context():
 def test_email():
 
     params = {
-        "from": "onboarding@resend.dev",
-        "to": ["anvaya.platform@gmail.com"],  
+        "from": "anvaya.platform@gmail.com",
+        "to": ["apoorva30me@gmail.com"],  
         "subject": "Anvaya Test Email",
         "html": """
         <h2>Hello!</h2>
