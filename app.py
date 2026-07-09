@@ -426,9 +426,9 @@ with app.app_context():
 
     db.create_all()
 
-print("DATABASE URI =", app.config["SQLALCHEMY_DATABASE_URI"])
-print("ENGINE =", db.engine.url)
-print("===== DATABASE TABLES CREATED =====")
+    print("DATABASE URI =", app.config["SQLALCHEMY_DATABASE_URI"])
+    print("ENGINE =", db.engine.url)
+    print("===== DATABASE TABLES CREATED =====")
 
     admin = Admin.query.filter_by(username="admin").first()
 
@@ -441,6 +441,7 @@ print("===== DATABASE TABLES CREATED =====")
         db.session.commit()
 
     print("===== ADMIN CHECK COMPLETE =====")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
