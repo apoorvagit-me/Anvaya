@@ -422,7 +422,11 @@ def admin_logout():
 # ================= START APPLICATION =================
 
 with app.app_context():
+    print("===== STARTING DATABASE INITIALIZATION =====")
+
     db.create_all()
+
+    print("===== DATABASE TABLES CREATED =====")
 
     admin = Admin.query.filter_by(username="admin").first()
 
@@ -433,6 +437,8 @@ with app.app_context():
         )
         db.session.add(admin)
         db.session.commit()
+
+    print("===== ADMIN CHECK COMPLETE =====")
 
 if __name__ == "__main__":
     app.run(debug=True)
