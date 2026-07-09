@@ -463,7 +463,7 @@ def test_email():
 
     params = {
         "from": "onboarding@resend.dev",
-        "to": ["YOUR_PERSONAL_EMAIL@gmail.com"],  # Replace with your email
+        "to": ["anvaya.platform@gmail.com"],  
         "subject": "Anvaya Test Email",
         "html": """
         <h2>Hello!</h2>
