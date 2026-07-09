@@ -20,6 +20,17 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
+# ================= MAIL CONFIGURATION =================
+
+app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
+app.config["MAIL_PORT"] = int(os.environ.get("MAIL_PORT", 587))
+app.config["MAIL_USE_TLS"] = os.environ.get("MAIL_USE_TLS", "True") == "True"
+app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
+app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
+app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
+
+mail = Mail(app)
+
 # ================= DATABASE TABLES =================
 
 class Restaurant(db.Model):
@@ -453,6 +464,29 @@ with app.app_context():
         db.session.commit()
 
     print("===== ADMIN CHECK COMPLETE =====")
+
+
+@app.route("/test-email")
+def test_email():
+
+    msg = Message(
+        subject="Anvaya Email Test",
+        recipients=["anvaya.platform@gmail.com"]
+    )
+
+    msg.body = """
+Hello!
+
+This is a test email from your Anvaya platform.
+
+If you received this, Gmail integration is working successfully.
+
+- Anvaya
+"""
+
+    mail.send(msg)
+
+    return "Test email sent successfully!"
 
 
 if __name__ == "__main__":
