@@ -56,10 +56,6 @@ class Donation(db.Model):
     claimed_by = db.Column(db.String(100), default="")
 
 
-    with app.app_context():
-    db.create_all()
-
-
 # ================= HOME =================
 
 @app.route("/")
@@ -425,25 +421,18 @@ def admin_logout():
     
 # ================= START APPLICATION =================
 
+with app.app_context():
+    db.create_all()
+
+    admin = Admin.query.filter_by(username="admin").first()
+
+    if not admin:
+        admin = Admin(
+            username="admin",
+            password=generate_password_hash("admin123")
+        )
+        db.session.add(admin)
+        db.session.commit()
+
 if __name__ == "__main__":
-
-    with app.app_context():
-
-        db.create_all()
-
-        # Create default admin if it doesn't exist
-        admin = Admin.query.filter_by(username="admin").first()
-
-        if not admin:
-
-            admin = Admin(
-                username="admin",
-                password=generate_password_hash("admin123")
-            )
-
-            db.session.add(admin)
-            db.session.commit()
-
-            print("✅ Default admin account created.")
-
     app.run(debug=True)
