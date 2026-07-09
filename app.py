@@ -56,6 +56,10 @@ class Donation(db.Model):
     claimed_by = db.Column(db.String(100), default="")
 
 
+    with app.app_context():
+    db.create_all()
+
+
 # ================= HOME =================
 
 @app.route("/")
