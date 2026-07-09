@@ -26,14 +26,14 @@ class Restaurant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     restaurant_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(300), nullable=False)
 
 
 class NGO(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ngo_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(300), nullable=False)
 
 
 class Admin(db.Model):
@@ -41,7 +41,7 @@ class Admin(db.Model):
 
     username = db.Column(db.String(100), unique=True, nullable=False)
 
-    password = db.Column(db.String(200), nullable=False)
+    password = db.Column(db.String(300), nullable=False)
 
 
 class Donation(db.Model):
@@ -426,7 +426,9 @@ with app.app_context():
 
     db.create_all()
 
-    print("===== DATABASE TABLES CREATED =====")
+print("DATABASE URI =", app.config["SQLALCHEMY_DATABASE_URI"])
+print("ENGINE =", db.engine.url)
+print("===== DATABASE TABLES CREATED =====")
 
     admin = Admin.query.filter_by(username="admin").first()
 
