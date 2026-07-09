@@ -2,7 +2,6 @@ import os
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_mail import Mail, Message
 
 app = Flask(__name__)
 
@@ -20,22 +19,6 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
-# ================= MAIL CONFIGURATION =================
-
-app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
-app.config["MAIL_PORT"] = int(os.environ.get("MAIL_PORT", 587))
-app.config["MAIL_USE_TLS"] = os.environ.get("MAIL_USE_TLS", "True") == "True"
-app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
-app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
-app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
-
-print("MAIL_SERVER =", app.config["MAIL_SERVER"])
-print("MAIL_PORT =", app.config["MAIL_PORT"])
-print("MAIL_USE_TLS =", app.config["MAIL_USE_TLS"])
-print("MAIL_USERNAME =", app.config["MAIL_USERNAME"])
-print("MAIL_DEFAULT_SENDER =", app.config["MAIL_DEFAULT_SENDER"])
-
-mail = Mail(app)
 
 # ================= DATABASE TABLES =================
 
