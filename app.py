@@ -426,13 +426,13 @@ with app.app_context():
 
     db.create_all()
 
-from sqlalchemy import inspect
-inspector = inspect(db.engine)
-print("TABLES FOUND:", inspector.get_table_names())
+    from sqlalchemy import inspect
+
+    inspector = inspect(db.engine)
 
     print("DATABASE URI =", app.config["SQLALCHEMY_DATABASE_URI"])
     print("ENGINE =", db.engine.url)
-    print("===== DATABASE TABLES CREATED =====")
+    print("TABLES FOUND:", inspector.get_table_names())
 
     admin = Admin.query.filter_by(username="admin").first()
 
