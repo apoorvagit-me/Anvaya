@@ -11,7 +11,7 @@ resend.api_key = os.environ.get("RESEND_API_KEY")
 def send_email(to_email, subject, html_body):
 
     params = {
-        "from": "noreply@anvayaconnect.org",
+        "from": "notifications@anvayaconnect.org",
         "to": [to_email],
         "subject": subject,
         "html": html_body
