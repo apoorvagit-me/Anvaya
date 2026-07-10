@@ -413,50 +413,26 @@ def reset_admin():
 
 # ================= RESET ADMIN (TEMPORARY) =================
 
-@app.route("/show-admins")
-def show_admins():
+@app.route("/reset-admin")
+def reset_admin():
 
-    admins = Admin.query.all()
+    admin = Admin.query.first()
 
-    output = ""
+    if not admin:
+        return "No admin found."
 
-    for admin in admins:
-        output += f"""
-        ID: {admin.id}<br>
-        Username: {admin.username}<br><br>
-        """
+    new_hash = generate_password_hash("admin123")
+    admin.password = new_hash
 
-    return output
+    db.session.add(admin)          # <-- add this
+    db.session.commit()
+    db.session.refresh(admin)      # <-- reload from DB
 
-
-
-@app.route("/admin/login", methods=["GET", "POST"])
-def admin_login():
-
-    if request.method == "POST":
-
-        username = request.form["username"]
-        password = request.form["password"]
-
-        print("USERNAME:", username)
-        print("PASSWORD:", password)
-
-        admin = Admin.query.filter_by(username=username).first()
-
-        print("ADMIN:", admin)
-
-        if admin:
-            print("HASH:", admin.password)
-            print("MATCH:", check_password_hash(admin.password, password))
-
-        if admin and check_password_hash(admin.password, password):
-
-            session["admin"] = admin.username
-            return redirect("/admin/dashboard")
-
-        return "Invalid username or password."
-
-    return render_template("admin_login.html")
+    return f"""
+    Password reset successfully.<br>
+    New Hash:<br>
+    {admin.password}
+    """
 
 
     # ================= ADMIN DASHBOARD =================
