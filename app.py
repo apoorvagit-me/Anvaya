@@ -413,20 +413,20 @@ def reset_admin():
 
 # ================= RESET ADMIN (TEMPORARY) =================
 
-@app.route("/reset-admin")
-def reset_admin():
+@app.route("/show-admins")
+def show_admins():
 
-    admin = Admin.query.first()
+    admins = Admin.query.all()
 
-    if not admin:
-        return "No admin found."
+    output = ""
 
-    admin.username = "admin"
-    admin.password = generate_password_hash("admin123")
+    for admin in admins:
+        output += f"""
+        ID: {admin.id}<br>
+        Username: {admin.username}<br><br>
+        """
 
-    db.session.commit()
-
-    return "Admin password reset successfully!"
+    return output
 
 
 
