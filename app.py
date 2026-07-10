@@ -415,13 +415,6 @@ def create_admin():
     return "Admin created successfully!"
 
 
-# ================= ADMIN LOGIN =================
-
-@app.route("/admin/login", methods=["GET", "POST"])
-def admin_login():
-
-    ...
-
     # ================= ADMIN LOGIN =================
 
 @app.route("/admin/login", methods=["GET", "POST"])
