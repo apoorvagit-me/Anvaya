@@ -512,8 +512,7 @@ def admin_logout():
 
     return redirect("/admin/login")
 
-    
-# ================= START APPLICATION =================
+    # ================= START APPLICATION =================
 
 with app.app_context():
     print("===== STARTING DATABASE INITIALIZATION =====")
@@ -523,7 +522,7 @@ with app.app_context():
     print("DATABASE URI =", app.config["SQLALCHEMY_DATABASE_URI"])
 
     try:
-        
+
         db.create_all()
         print("CREATE ALL SUCCESS")
 
@@ -536,15 +535,16 @@ with app.app_context():
 
     admin = Admin.query.filter_by(username="admin").first()
 
-if not admin:
-    admin = Admin(username="admin")
-    db.session.add(admin)
+    if not admin:
+        admin = Admin(
+            username="admin",
+            password=generate_password_hash("admin123")
+        )
 
-admin.password = generate_password_hash("admin123")
+        db.session.add(admin)
+        db.session.commit()
 
-db.session.commit()
-
-print("Admin password reset on startup.")
+        print("Admin created.")
 
     print("===== ADMIN CHECK COMPLETE =====")
 
