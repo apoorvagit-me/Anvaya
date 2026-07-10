@@ -432,9 +432,7 @@ with app.app_context():
     print("DATABASE URI =", app.config["SQLALCHEMY_DATABASE_URI"])
 
     try:
-        db.drop_all()
-        print("DROP ALL SUCCESS")
-
+        
         db.create_all()
         print("CREATE ALL SUCCESS")
 
@@ -462,7 +460,7 @@ with app.app_context():
 def test_email():
 
     params = {
-        "from": "anvaya.platform@gmail.com",
+        "from": "noreply@anvayaconnect.org",
         "to": ["apoorva30me@gmail.com"],  
         "subject": "Anvaya Test Email",
         "html": """
