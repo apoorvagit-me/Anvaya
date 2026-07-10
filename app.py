@@ -536,13 +536,15 @@ with app.app_context():
 
     admin = Admin.query.filter_by(username="admin").first()
 
-    if not admin:
-        admin = Admin(
-            username="admin",
-            password=generate_password_hash("admin123")
-        )
-        db.session.add(admin)
-        db.session.commit()
+if not admin:
+    admin = Admin(username="admin")
+    db.session.add(admin)
+
+admin.password = generate_password_hash("admin123")
+
+db.session.commit()
+
+print("Admin password reset on startup.")
 
     print("===== ADMIN CHECK COMPLETE =====")
 
