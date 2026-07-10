@@ -418,6 +418,33 @@ def reset_admin():
     {admin.password}
     """
 
+# ================= ADMIN LOGIN =================
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+        password = request.form["password"]
+
+        admin = Admin.query.filter_by(username=username).first()
+
+        print("USERNAME:", username)
+        print("PASSWORD:", password)
+        print("ADMIN:", admin)
+
+        if admin:
+            print("MATCH:", check_password_hash(admin.password, password))
+
+        if admin and check_password_hash(admin.password, password):
+
+            session["admin"] = admin.username
+            return redirect("/admin/dashboard")
+
+        return "Invalid username or password."
+
+    return render_template("admin_login.html")
 
     # ================= ADMIN DASHBOARD =================
 
