@@ -430,8 +430,6 @@ def show_admins():
 
 
 
-    # ================= ADMIN LOGIN =================
-
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
 
@@ -440,12 +438,20 @@ def admin_login():
         username = request.form["username"]
         password = request.form["password"]
 
+        print("USERNAME:", username)
+        print("PASSWORD:", password)
+
         admin = Admin.query.filter_by(username=username).first()
+
+        print("ADMIN:", admin)
+
+        if admin:
+            print("HASH:", admin.password)
+            print("MATCH:", check_password_hash(admin.password, password))
 
         if admin and check_password_hash(admin.password, password):
 
             session["admin"] = admin.username
-
             return redirect("/admin/dashboard")
 
         return "Invalid username or password."
