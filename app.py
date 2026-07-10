@@ -8,6 +8,17 @@ app = Flask(__name__)
 
 resend.api_key = os.environ.get("RESEND_API_KEY")
 
+def send_email(to_email, subject, html_body):
+
+    params = {
+        "from": "noreply@anvayaconnect.org",
+        "to": [to_email],
+        "subject": subject,
+        "html": html_body
+    }
+
+    resend.Emails.send(params)
+
 # ================= CONFIGURATION =================
 
 app.config["SECRET_KEY"] = "anvaya_secret_key"
@@ -169,6 +180,35 @@ def add_donation():
         db.session.add(donation)
         db.session.commit()
 
+        # Notify all NGOs
+        ngos = NGO.query.all()
+
+        for ngo in ngos:
+
+            subject = "🍛 New Food Donation Available"
+
+            body = f"""
+            <h2>New Food Donation</h2>
+
+            <p><b>Restaurant:</b> {donation.restaurant}</p>
+
+            <p><b>Food:</b> {donation.food_name}</p>
+
+            <p><b>Quantity:</b> {donation.quantity}</p>
+
+            <p><b>Pickup Address:</b> {donation.address}</p>
+
+            <p><b>Available Until:</b> {donation.ready_until}</p>
+
+            <p>Please login to Anvaya and claim it.</p>
+            """
+
+            send_email(
+                ngo.email,
+                subject,
+                body
+            )
+
         return redirect("/restaurant/dashboard")
 
     return render_template("add_donation.html")
@@ -275,10 +315,43 @@ def claim_donation(donation_id):
     donation = Donation.query.get(donation_id)
 
     if donation and donation.status == "Available":
+
         donation.status = "Claimed"
         donation.claimed_by = session["ngo"]
 
         db.session.commit()
+
+        restaurant = Restaurant.query.filter_by(
+            restaurant_name=donation.restaurant
+        ).first()
+
+        ngo = NGO.query.filter_by(
+            ngo_name=session["ngo"]
+        ).first()
+
+        if restaurant and ngo:
+
+            subject = "✅ Your Donation Has Been Claimed"
+
+            body = f"""
+            <h2>Your Donation Has Been Claimed</h2>
+
+            <p><b>NGO:</b> {ngo.ngo_name}</p>
+
+            <p><b>Food:</b> {donation.food_name}</p>
+
+            <p><b>Quantity:</b> {donation.quantity}</p>
+
+            <p><b>Pickup Address:</b> {donation.address}</p>
+
+            <p>Thank you for reducing food waste with Anvaya.</p>
+            """
+
+            send_email(
+                restaurant.email,
+                subject,
+                body
+            )
 
     return redirect("/ngo/dashboard")
 
@@ -459,18 +532,15 @@ with app.app_context():
 @app.route("/test-email")
 def test_email():
 
-    params = {
-        "from": "noreply@anvayaconnect.org",
-        "to": ["apoorva30me@gmail.com"],  
-        "subject": "Anvaya Test Email",
-        "html": """
-        <h2>Hello!</h2>
-        <p>Your Resend integration is working successfully.</p>
-        <p><b>Welcome to Anvaya 🚀</b></p>
-        """
-    }
-
-    resend.Emails.send(params)
+    send_email(
+    "apoorva30me@gmail.com",
+    "Anvaya Test Email",
+    """
+    <h2>Hello!</h2>
+    <p>Your Resend integration is working successfully.</p>
+    <p><b>Welcome to Anvaya 🚀</b></p>
+    """
+)
 
     return "Email sent successfully!"
 
