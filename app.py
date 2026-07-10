@@ -396,23 +396,20 @@ def ngo_logout():
 
     # ================= CREATE ADMIN (TEMPORARY) =================
 
-@app.route("/create-admin")
-def create_admin():
+@app.route("/reset-admin")
+def reset_admin():
 
-    existing_admin = Admin.query.filter_by(username="admin").first()
+    admin = Admin.query.first()
 
-    if existing_admin:
-        return "Admin already exists."
+    if not admin:
+        return "No admin found."
 
-    admin = Admin(
-        username="admin",
-        password=generate_password_hash("ChangeThisPassword123!")
-    )
+    admin.username = "admin"
+    admin.password = generate_password_hash("Admin@12345")
 
-    db.session.add(admin)
     db.session.commit()
 
-    return "Admin created successfully!"
+    return "Admin reset successfully!"
 
 
     # ================= ADMIN LOGIN =================
