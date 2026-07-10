@@ -456,14 +456,30 @@ def admin_dashboard():
 
     restaurant_count = Restaurant.query.count()
     ngo_count = NGO.query.count()
-    donation_count = Donation.query.count()
+
+    total_donations = Donation.query.count()
+
+    available_count = Donation.query.filter_by(
+        status="Available"
+    ).count()
+
+    claimed_count = Donation.query.filter_by(
+        status="Claimed"
+    ).count()
+
+    collected_count = Donation.query.filter_by(
+        status="Collected"
+    ).count()
 
     return render_template(
         "admin_dashboard.html",
         admin=session["admin"],
         restaurant_count=restaurant_count,
         ngo_count=ngo_count,
-        donation_count=donation_count
+        total_donations=total_donations,
+        available_count=available_count,
+        claimed_count=claimed_count,
+        collected_count=collected_count
     )
 
 
