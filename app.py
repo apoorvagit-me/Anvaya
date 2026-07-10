@@ -3,6 +3,16 @@ import os
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+import re
+
+def get_meal_count(quantity):
+
+    match = re.search(r"\d+", quantity)
+
+    if match:
+        return int(match.group())
+
+    return 0
 
 app = Flask(__name__)
 
@@ -74,7 +84,34 @@ class Donation(db.Model):
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+
+    restaurant_count = Restaurant.query.count()
+
+    ngo_count = NGO.query.count()
+
+    collected_donations = Donation.query.filter_by(
+        status="Collected"
+    ).all()
+
+    meals_rescued = sum(
+        get_meal_count(d.quantity)
+        for d in collected_donations
+    )
+
+    carbon_saved_kg = meals_rescued * 2.5
+
+    carbon_saved_tons = round(
+        carbon_saved_kg / 1000,
+        2
+    )
+
+    return render_template(
+        "index.html",
+        restaurant_count=restaurant_count,
+        ngo_count=ngo_count,
+        meals_rescued=meals_rescued,
+        carbon_saved_tons=carbon_saved_tons
+    )
 
 
 # ================= RESTAURANT REGISTRATION =================
@@ -471,6 +508,18 @@ def admin_dashboard():
         status="Collected"
     ).count()
 
+    collected_donations = Donation.query.filter_by(
+    status="Collected"
+).all()
+
+meals_rescued = sum(
+    get_meal_count(d.quantity)
+    for d in collected_donations
+)
+
+carbon_saved_kg = meals_rescued * 2.5
+carbon_saved_tons = round(carbon_saved_kg / 1000, 2)
+
     return render_template(
         "admin_dashboard.html",
         admin=session["admin"],
@@ -480,7 +529,9 @@ def admin_dashboard():
         available_count=available_count,
         claimed_count=claimed_count,
         collected_count=collected_count
-    )
+        meals_rescued=meals_rescued,
+        carbon_saved_tons=carbon_saved_tons,
+)
 
 
 # ================= ADMIN RESTAURANTS =================
