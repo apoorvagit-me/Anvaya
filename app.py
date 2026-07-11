@@ -483,7 +483,7 @@ def admin_login():
 
     return render_template("admin_login.html")
 
-    # ================= ADMIN DASHBOARD =================
+# ================= ADMIN DASHBOARD =================
 
 @app.route("/admin/dashboard")
 def admin_dashboard():
@@ -509,16 +509,16 @@ def admin_dashboard():
     ).count()
 
     collected_donations = Donation.query.filter_by(
-    status="Collected"
-).all()
+        status="Collected"
+    ).all()
 
-meals_rescued = sum(
-    get_meal_count(d.quantity)
-    for d in collected_donations
-)
+    meals_rescued = sum(
+        get_meal_count(d.quantity)
+        for d in collected_donations
+    )
 
-carbon_saved_kg = meals_rescued * 2.5
-carbon_saved_tons = round(carbon_saved_kg / 1000, 2)
+    carbon_saved_kg = meals_rescued * 2.5
+    carbon_saved_tons = round(carbon_saved_kg / 1000, 2)
 
     return render_template(
         "admin_dashboard.html",
@@ -528,10 +528,10 @@ carbon_saved_tons = round(carbon_saved_kg / 1000, 2)
         total_donations=total_donations,
         available_count=available_count,
         claimed_count=claimed_count,
-        collected_count=collected_count
+        collected_count=collected_count,
         meals_rescued=meals_rescued,
         carbon_saved_tons=carbon_saved_tons,
-)
+    )
 
 
 # ================= ADMIN RESTAURANTS =================
