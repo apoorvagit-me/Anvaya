@@ -89,14 +89,14 @@ def home():
 
     ngo_count = NGO.query.count()
 
-    collected_donations = Donation.query.filter_by(
-        status="Collected"
-    ).all()
+    claimed_donations = Donation.query.filter_by(
+    status="Claimed"
+).all()
 
     meals_rescued = sum(
-        get_meal_count(d.quantity)
-        for d in collected_donations
-    )
+    get_meal_count(d.quantity)
+    for d in claimed_donations
+)
 
     carbon_saved_kg = meals_rescued * 2.5
 
@@ -508,14 +508,14 @@ def admin_dashboard():
         status="Collected"
     ).count()
 
-    collected_donations = Donation.query.filter_by(
-        status="Collected"
-    ).all()
+    claimed_donations = Donation.query.filter_by(
+    status="Claimed"
+).all()
 
     meals_rescued = sum(
-        get_meal_count(d.quantity)
-        for d in collected_donations
-    )
+    get_meal_count(d.quantity)
+    for d in claimed_donations
+)
 
     carbon_saved_kg = meals_rescued * 2.5
     carbon_saved_tons = round(carbon_saved_kg / 1000, 2)
